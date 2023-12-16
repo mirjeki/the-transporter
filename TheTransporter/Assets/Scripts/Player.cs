@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     [SerializeField] Sprite car1;
     [SerializeField] Sprite car2;
 
+    [SerializeField] Canvas canvas;
+
     SpriteRenderer mySpriteRenderer;
 
     void Start()
@@ -28,7 +30,12 @@ public class Player : MonoBehaviour
         float accelerateAmount = Input.GetAxis("Vertical") * accelerateSpeed * Time.deltaTime;
 
         transform.Rotate(0, 0, -steerAmount);
-        transform.Translate(0, accelerateAmount, 0);
+        transform.Translate(0,  accelerateAmount, 0);
+
+        if (canTransform == true)
+        {
+            canvas.GetComponent<Canvas>().enabled = true;
+        }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
